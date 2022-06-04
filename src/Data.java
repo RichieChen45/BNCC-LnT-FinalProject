@@ -1,61 +1,25 @@
 import java.util.Random;
 
 class Data {
-	
-	private static final int GAJI_MANAGER = 8000000;
-	private static final int GAJI_SUPERVISOR = 6000000;
-	private static final int GAJI_ADMIN = 4000000;
-
-	private static final double BONUS_GAJI_ADMIN = 0.1;
-	private static final double BONUS_GAJI_SUPERVISOR = 0.075;
-	private static final double BONUS_GAJI_MANAGER = 0.05;
 
 	private String kode;
 	private String nama;
-	private String jenisKelamin;
-	private String jabatan;
-	private int gaji;
+	private int harga;
+	private int stok;
 
 	public Data() {}
 
-    public Data(String nama, String jenisKelamin, String jabatan) {
+    public Data(String nama) {
         this.kode = generateCode();
         this.nama = nama;
-        this.jenisKelamin = jenisKelamin;
-        this.jabatan = jabatan;
-
-		if (jabatan.equals("Manager")) {
-        	this.gaji = GAJI_MANAGER;
-		} else if (jabatan.equals("Supervisor")) {
-			this.gaji = GAJI_SUPERVISOR;
-		} else {
-			this.gaji = GAJI_ADMIN;
-		}
     }
 
-	public Data(String kode, String nama, String jenisKelamin, String jabatan) {
-        this.kode = kode;
-        this.nama = nama;
-        this.jenisKelamin = jenisKelamin;
-        this.jabatan = jabatan;
-
-		if (jabatan.equals("Manager")) {
-        	this.gaji = GAJI_MANAGER;
-		} else if (jabatan.equals("Supervisor")) {
-			this.gaji = GAJI_SUPERVISOR;
-		} else {
-			this.gaji = GAJI_ADMIN;
-		}
-    }
-
-	public Data(String kode, String nama, String jenisKelamin, String jabatan, int gaji) {
+	public Data(String kode, String nama, int harga, int stok) {
 		this.kode = kode;
 		this.nama = nama;
-		this.jenisKelamin = jenisKelamin;
-		this.jabatan = jabatan;
-		this.gaji = gaji;
+		this.harga = harga;
+		this.stok = stok;
 	}
-
 
 	private String generateCode(){
 		String charList = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -98,28 +62,12 @@ class Data {
         return nama;
     }
 
-    public int getGaji() {
-        return gaji;
+    public int getHarga() {
+        return harga;
     }
 
-    public void setGaji(int gaji) {
-        this.gaji = gaji;
-    }
-
-    public String getJabatan() {
-        return jabatan;
-    }
-
-    public void setJabatan(String jabatan) {
-        this.jabatan = jabatan;
-    }
-
-    public String getJenisKelamin() {
-        return jenisKelamin;
-    }
-
-    public void setJenisKelamin(String jenisKelamin) {
-        this.jenisKelamin = jenisKelamin;
+    public void setHarga(int harga) {
+        this.harga = harga;
     }
 
     public String getKode() {
@@ -134,23 +82,7 @@ class Data {
         this.nama = nama;
     }
 
-	public Data update(String kode, String nama, String jenisKelamin, String jabatan) {
-		return new Data(kode, nama, jenisKelamin, jabatan);
-	}
-
-	public Data bonusGaji(Data data) {
-		if (data.getJabatan().equals("Manager")) {
-			int bonusGaji = (int)(data.getGaji() * BONUS_GAJI_MANAGER);
-			data.setGaji(data.getGaji() + bonusGaji);
-		} else if (data.getJabatan().equals("Supervisor")) {
-			int bonusGaji = (int)(data.getGaji() * BONUS_GAJI_SUPERVISOR);
-			data.setGaji(data.getGaji() + bonusGaji);
-		} else {
-			int bonusGaji = (int)(data.getGaji() * BONUS_GAJI_ADMIN);
-			data.setGaji(data.getGaji() + bonusGaji);
-		}
-
-
-		return data;
+	public Data update(String kode, String nama, int harga, int stok) {
+		return new Data(kode, nama, harga, stok);
 	}
 }
